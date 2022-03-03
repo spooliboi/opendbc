@@ -98,6 +98,9 @@ std::vector<uint8_t> CANPacker::pack(uint32_t address, const std::vector<SignalP
     } else if (sig.type == SignalType::CHRYSLER_CHECKSUM) {
       unsigned int chksm = chrysler_checksum(address, ret);
       set_value(ret, sig, chksm);
+    } else if (sig.type == SignalType::HKG_CAN_FD_CHECKSUM) {
+      unsigned int chksm = hkg_can_fd_checksum(address, ret);
+      set_value(ret, sig, chksm);
     } else {
       //WARN("CHECKSUM signal type not valid\n");
     }
